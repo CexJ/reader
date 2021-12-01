@@ -5,8 +5,8 @@ trait ServiceB {
 }
 
 trait ServiceBProvider {
-  final val serviceB: ServiceB = buildServiceBManager()
-  def buildServiceBManager(): ServiceB
+  final val serviceB: ServiceB = buildServiceB()
+  def buildServiceB(): ServiceB
 }
 
 class DefaultServiceB()(implicit app: DefaultServiceB.Dependencies) extends ServiceB {
@@ -18,5 +18,5 @@ object DefaultServiceB {
 }
 
 class DefaultServiceBProvider()(implicit app: ServiceCProvider) extends ServiceBProvider {
-  def buildServiceBManager(): ServiceB = new DefaultServiceB()
+  def buildServiceB(): ServiceB = new DefaultServiceB()
 }

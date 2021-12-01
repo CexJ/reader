@@ -5,12 +5,11 @@ trait ServiceB {
 }
 
 trait ServiceBProvider {
-  final val serviceB: ServiceB = buildServiceBManager()
-  def buildServiceBManager(): ServiceB
+  final val serviceB: ServiceB = buildServiceB()
+  def buildServiceB(): ServiceB
 }
 
 class DefaultServiceB()(implicit app: DefaultServiceB.Dependencies) extends ServiceB {
-  println(app) // <- why this is NULL ???
 
   override def getB(i: String): String = app.serviceC.getC(i+"-B")
 
@@ -22,5 +21,5 @@ object DefaultServiceB {
 
 object DefaultServiceBProvider extends ServiceBProvider {
   implicit val serviceCProvider: ServiceCProvider = DefaultServiceCProvider
-  def buildServiceBManager(): ServiceB = new DefaultServiceB()(serviceCProvider)
+  def buildServiceB(): ServiceB = new DefaultServiceB()(serviceCProvider)
 }

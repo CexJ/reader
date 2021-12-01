@@ -5,8 +5,8 @@ trait ServiceC {
 }
 
 trait ServiceCProvider {
-  final val serviceC: ServiceC = buildServiceCManager()
-  def buildServiceCManager(): ServiceC
+  final val serviceC: ServiceC = buildServiceC()
+  def buildServiceC(): ServiceC
 }
 
 object DefaultServiceC extends ServiceC {
@@ -14,6 +14,6 @@ object DefaultServiceC extends ServiceC {
 }
 
 object DefaultServiceCProvider extends ServiceCProvider {
-  def buildServiceCManager(): ServiceC = DefaultServiceC
+  def buildServiceC(): ServiceC = DefaultServiceC
 }
 
